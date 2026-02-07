@@ -157,13 +157,9 @@
         resp.innerText = "📡 Conectando ao Núcleo de Inteligência...";
 
         try {
-            const response = await fetch("/perguntar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mensagem: input.value })
-            });
-
-            const data = await response.json();
+// Apague ou comente as linhas do fetch e do data antigo
+// Substitua por isso:
+const data = { resposta: "Sistemas online! O núcleo Chappie está em modo de demonstração no GitHub. Minha consciência total será conectada em breve!" };
 
             if (data.resposta) {
                 digitarResposta(data.resposta);
