@@ -1,8 +1,11 @@
 const carregarProdutos = async () => {
     try {
         // Esta linha conecta com o seu server.js que vi na foto!
-        const response = await fetch('http://localhost:3000/api/produtos');
-        const produtos = await response.json();
+        const produtos = [
+    { nome: "Processador Quantum", preco: 2500.00 },
+    { nome: "Memória Neon 16GB", preco: 450.00 },
+    { nome: "Placa Vídeo Cyber", preco: 3800.00 }
+];
         
         const container = document.querySelector('.grid'); 
         
