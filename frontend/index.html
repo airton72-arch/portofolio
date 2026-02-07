@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontend Hacker - Airton Heinen</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#02080d;
+  --neon:#00eaff;
+  --neon-dark:#008cff;
+  --panel:#06151f;
+  --text:#dffcff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
+
+body{
+  background:radial-gradient(circle at top,#003b55 0%,transparent 45%),
+             linear-gradient(#02080d,#010507);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.scanline{
+  position:fixed;inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,234,255,.05),
+    rgba(0,234,255,.05) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  pointer-events:none;
+}
+
+.container{
+  width:95%;
+  max-width:1100px;
+  padding:35px;
+  border:1px solid var(--neon);
+  background:var(--panel);
+  box-shadow:0 0 30px rgba(0,234,255,.35),
+             inset 0 0 25px rgba(0,234,255,.15);
+  position: relative;
+}
+
+header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+header h1{
+  color:var(--neon);
+  text-shadow:0 0 15px var(--neon), 0 0 30px var(--neon-dark);
+  letter-spacing:3px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.module{
+  border:1px solid rgba(0,234,255,.4);
+  padding:20px;
+  background:rgba(2,12,18,.9);
+  position:relative;
+  text-align:center;
+}
+
+.module h2{
+  color:var(--neon);
+  margin-bottom:10px;
+}
+
+/* EFEITO 3D NEON DOS BOTÕES - RECUPERADO */
+.cyber-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  color:var(--neon);
+  border:1px solid var(--neon);
+  text-decoration:none;
+  position:relative;
+  box-shadow:0 6px 0 var(--neon-dark), 0 0 15px rgba(0,234,255,.6);
+  transition:.15s;
+  border-radius:5px;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cyber-btn:hover{
+  transform: translateY(-2px);
+  box-shadow:0 8px 0 var(--neon-dark), 0 0 20px rgba(0,234,255,.8);
+}
+
+.cyber-btn:active{
+  transform:translateY(4px);
+  box-shadow:0 2px 0 var(--neon-dark), inset 0 0 10px rgba(0,234,255,.8);
+}
+
+/* BOTÃO VOLTAR DENTRO DO DESIGN */
+.back-nav {
+  margin-bottom: 20px;
+}
+
+footer{
+  margin-top:30px;
+  text-align:center;
+  font-size:.7rem;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+<div class="scanline"></div>
+<div class="container">
+
+<div class="back-nav">
+  <a href="../index.html" class="cyber-btn" style="box-shadow:0 4px 0 var(--neon-dark); font-size: 0.7rem;">
+    <i class="fas fa-arrow-left"></i> VOLTAR AO MENU
+  </a>
+</div>
+
+<header>
+  <h1>FRONTEND HACKER</h1>
+  <p style="font-size: 0.8rem; margin-top: 5px; color: var(--neon); opacity: 0.8;">Airton Heinen</p>
+</header>
+
+<section class="grid">
+
+  <div class="module">
+    <h2>Relógio Cyber</h2>
+    <p>Relógio digital animado em tempo real.</p>
+    <a href="relogio.html" class="cyber-btn">ABRIR</a>
+  </div>
+
+  <div class="module">
+    <h2>Calculadora</h2>
+    <p>Calculadora científica estilo cyber.</p>
+    <a href="calculadora.html" class="cyber-btn">ABRIR</a>
+  </div>
+
+  <div class="module">
+    <h2>Tetris Cyber</h2>
+    <p>Jogo Tetris clássico com visual neon.</p>
+    <a href="tetris.html" class="cyber-btn">ABRIR</a>
+  </div>
+
+  <div class="module">
+    <h2>Cyber Store</h2>
+    <p>Acesse o e-commerce via Backend.</p>
+    <a href="../cyber-store/index.html" class="cyber-btn">VER LOJA</a>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 • Airton Heinen • Cyber System Portfolio
+</footer>
+
+</div>
+</body>
+</html>

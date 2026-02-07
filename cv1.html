@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currículo Cyber Extreme | Airton Heinen</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg">
+
+<style>
+:root {
+    --neon-blue: #00f2ff;
+    --dark-bg: #0a0b10;
+    --card-bg: rgba(22,27,34,0.8);
+    --text-gray: #8b949e;
+    --text-white: #c9d1d9;
+    --glitch-red: #ff005c;
+    --glitch-green: #00ff9c;
+}
+
+/* FONTE TERMINAL + SCANLINE */
+body {
+    background-color: var(--dark-bg);
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text-white);
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* fundo terminal digital animado */
+body::after {
+    content:"";
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,242,255,0.05) 0px,
+        rgba(0,242,255,0.05) 2px,
+        transparent 2px,
+        transparent 6px
+    );
+    animation: scanline 2s linear infinite;
+    pointer-events:none;
+    z-index:0;
+}
+
+@keyframes scanline { 0%{background-position:0 0;} 100%{background-position:0 100%;} }
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0,242,255,0.3);
+    background: var(--card-bg);
+    position: relative;
+    z-index:1;
+}
+
+/* GLITCH NOME */
+header { text-align:center; margin-bottom:30px; }
+h1 {
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size:2rem;
+    position: relative;
+    margin:0;
+}
+h1::before,
+h1::after {
+    content: attr(data-text);
+    position: absolute; top:0; left:0;
+    width:100%;
+    color: var(--neon-blue);
+    background: transparent;
+    overflow: hidden;
+    clip: rect(0,900px,0,0);
+}
+h1::before { left:2px; text-shadow:-2px 0 var(--glitch-red); animation: glitchTop 2s infinite linear alternate-reverse; }
+h1::after { left:-2px; text-shadow:-2px 0 var(--glitch-green); animation: glitchBottom 2s infinite linear alternate-reverse; }
+@keyframes glitchTop {
+    0%{clip:rect(0,900px,5px,0) translate(0,0);}
+    20%{clip:rect(10px,900px,25px,0) translate(-2px,-2px);}
+    40%{clip:rect(30px,900px,45px,0) translate(2px,1px);}
+    60%{clip:rect(50px,900px,65px,0) translate(-1px,2px);}
+    80%{clip:rect(70px,900px,90px,0) translate(2px,-1px);}
+    100%{clip:rect(0,900px,5px,0) translate(0,0);}
+}
+@keyframes glitchBottom{
+    0%{clip:rect(85px,900px,95px,0) translate(0,0);}
+    20%{clip:rect(60px,900px,75px,0) translate(2px,1px);}
+    40%{clip:rect(30px,900px,45px,0) translate(-2px,-1px);}
+    60%{clip:rect(10px,900px,25px,0) translate(1px,-2px);}
+    80%{clip:rect(40px,900px,55px,0) translate(-2px,2px);}
+    100%{clip:rect(85px,900px,95px,0) translate(0,0);}
+}
+
+.subtitle { font-size:1.2rem; color: var(--text-gray); margin-top:10px; }
+.contact-info { text-align:center; font-size:0.9rem; margin-top:10px; }
+.contact-info a { color: var(--neon-blue); text-decoration:none; margin:0 10px; }
+
+h2 {
+    color: var(--neon-blue);
+    border-left: 4px solid var(--neon-blue);
+    padding-left: 15px;
+    text-transform: uppercase;
+    font-size:1.1rem;
+    margin-top:30px;
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+    animation: glow 2s infinite alternate;
+}
+@keyframes glow { from{text-shadow:0 0 5px var(--neon-blue),0 0 10px var(--neon-blue);} to{text-shadow:0 0 10px var(--neon-blue),0 0 20px var(--neon-blue);} }
+
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--neon-blue);
+    padding:15px;
+    border-radius:5px;
+    box-shadow:0 0 10px var(--neon-blue);
+    transition:0.3s;
+}
+.card:hover { box-shadow:0 0 25px var(--neon-blue),0 0 50px rgba(0,242,255,0.3); transform: translateY(-3px); }
+
+ul{ list-style:none; padding-left:0; }
+ul li::before{ content: "> "; color: var(--neon-blue); }
+
+.exp-item{ margin-bottom:20px; }
+.exp-title{ font-weight:bold; color: var(--text-white);}
+.date{ color: var(--neon-blue); font-size:0.9rem; display:block; margin-bottom:5px; }
+
+.skill{ margin:10px 0; font-size:.9rem; }
+.bar{ background:#022; height:8px; border:1px solid var(--neon-blue); border-radius:4px; margin-top:5px; }
+.bar div{ height:100%; background:var(--neon-blue); box-shadow:0 0 8px var(--neon-blue); width:0; animation: fill 1.5s ease forwards; }
+@keyframes fill { from{width:0;} to{width:inherit;} }
+
+.cyber-btn{
+    display:inline-block; margin:10px 5px 0 0; padding:10px 20px; color: var(--neon-blue);
+    border:1px solid var(--neon-blue); text-decoration:none; position:relative;
+    box-shadow:0 6px 0 rgba(0,242,255,.3),0 0 15px rgba(0,242,255,.6);
+    transition:.15s; border-radius:5px;
+}
+.cyber-btn:hover{ transform:translateY(-2px); animation: pulse 1s infinite; }
+@keyframes pulse { 0%{box-shadow:0 6px 0 rgba(0,242,255,.3),0 0 15px rgba(0,242,255,.6);} 50%{box-shadow:0 6px 0 rgba(0,242,255,.6),0 0 25px rgba(0,242,255,1);} 100%{box-shadow:0 6px 0 rgba(0,242,255,.3),0 0 15px rgba(0,242,255,.6);} }
+
+@media(max-width:600px){ .grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+<header>
+    <h1 data-text="Airton Heinen G. de Oliveira">Airton Heinen G. de Oliveira</h1>
+    <div class="subtitle">Desenvolvedor Web Jr | Especialista em Eletrotécnica</div>
+    <div class="contact-info">
+        <span>São Gonçalo, RJ</span> |
+        <a href="mailto:airton72@hotmail.com">airton72@hotmail.com</a> |
+        <span>(21) 99067-0499</span>
+    </div>
+</header>
+
+<h2>// Perfil Profissional</h2>
+<p>
+Profissional em transição de carreira para Tecnologia, unindo sólida base em Eletrotécnica com desenvolvimento digital. Focado em criar interfaces modernas e funcionais, aplico disciplina e lógica para resolver problemas complexos com código limpo e eficiente.
+</p>
+
+<div class="grid">
+    <div>
+        <h2>// Stack de Formação (Tech)</h2>
+        <div class="card">
+            <div class="skill"><span>Lógica de Programação</span><div class="bar"><div style="width:80%"></div></div></div>
+            <div class="skill"><span>Front-end (HTML, CSS, JS)</span><div class="bar"><div style="width:70%"></div></div></div>
+            <div class="skill"><span>Back-end (Node.js, APIs)</span><div class="bar"><div style="width:50%"></div></div></div>
+        </div>
+    </div>
+    <div>
+        <h2>// Competências Técnicas</h2>
+        <ul>
+            <li>Desenvolvimento de interfaces responsivas</li>
+            <li>Integração de APIs de IA Generativa</li>
+            <li>Montagem e Manutenção de Hardware</li>
+            <li>Redes e Infraestrutura (ADSL/Dados)</li>
+        </ul>
+    </div>
+</div>
+
+<h2>// Experiência Técnica Complementar (Elétrica)</h2>
+<div class="exp-item">
+    <span class="date">07/2022 — 08/2025</span>
+    <div class="exp-title">Eletrotécnico | ELLCA 2 Serviços e Locações</div>
+    <p>Manutenção elétrica industrial e predial, diagnóstico de falhas e execução técnica de alta precisão.</p>
+</div>
+<div class="exp-item">
+    <span class="date">11/2019 — 07/2022</span>
+    <div class="exp-title">Eletricista Jr | Dinamo Engenharia</div>
+    <p>Instalação e manutenção de sistemas elétricos, seguindo normas NR-10/NR-35 e eficiência operacional.</p>
+</div>
+
+<h2>// Habilidades Transferíveis</h2>
+<div class="grid">
+    <div class="card"><strong>Raciocínio Lógico:</strong> Diagnóstico de falhas em sistemas complexos, aplicável na depuração de códigos.</div>
+    <div class="card"><strong>Disciplina e Segurança:</strong> Rigor técnico e documentação, essencial em desenvolvimento ágil.</div>
+</div>
+
+<h2>// Formação e Certificações</h2>
+<ul>
+    <li>Técnico em Eletrotécnica – Net Info</li>
+    <li>Técnico em Administração de Empresas – Liceu Literário Português</li>
+    <li>Certificações: NR-10 e NR-35</li>
+    <li>Inglês Técnico Offshore</li>
+</ul>
+
+<h2>// Projetos em Destaque</h2>
+<div class="card"><strong>IA Cyber Online:</strong> Conectada ao Google Gemini, Node.js e API de linguagem natural.</div>
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="cv.pdf" class="cyber-btn"><i class="fas fa-download"></i> Download PDF</a>
+    <a href="cv/index.html" class="cyber-btn"><i class="fas fa-file-code"></i> CV Cyber</a>
+</div>
+</div>
+</body>
+</html>

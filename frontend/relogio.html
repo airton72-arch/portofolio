@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relógio Hacker INSANO | Airton</title>
+
+<style>
+:root {
+  --text-color: #000;
+  --shadow: 0 0 18px rgba(0,0,0,0.35);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+
+body {
+  font-family: "Courier New", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: background;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* NOME */
+.name {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900; /* negrito */
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+  color: var(--text-color);
+  text-shadow: var(--shadow);
+  text-transform: uppercase;
+}
+
+/* RELÓGIO */
+.clock {
+  font-size: clamp(5rem, 16vw, 12rem);
+  font-weight: 900; /* negrito */
+  letter-spacing: 10px;
+  color: var(--text-color);
+  text-shadow:
+    2px 0 rgba(255,0,0,0.5),
+   -2px 0 rgba(0,255,255,0.5);
+  animation: intenseGlitch 3s infinite;
+}
+
+/* GLITCH INTENSO */
+@keyframes intenseGlitch {
+  0%, 94%, 100% { filter: none; }
+  90% { filter: hue-rotate(45deg) blur(2px); }
+  91% { filter: hue-rotate(-45deg) blur(2px); }
+  92% { filter: hue-rotate(60deg) blur(1px); }
+  93% { filter: hue-rotate(-60deg) blur(1px); }
+}
+
+/* DATA */
+.date {
+  margin-top: 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  text-shadow: var(--shadow);
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="name">Airton Heinen Guimarães de Oliveira</div>
+  <div class="clock" id="clock">00:00:00</div>
+  <div class="date" id="date"></div>
+</div>
+
+<script>
+const clockEl = document.getElementById("clock");
+const dateEl = document.getElementById("date");
+
+/* 10 CORES DIFERENTES */
+const colors = [
+  [255, 107, 107],
+  [255, 217, 61],
+  [107, 203, 119],
+  [77, 150, 255],
+  [157, 78, 221],
+  [255, 140, 66],
+  [0, 245, 212],
+  [247, 37, 133],
+  [114, 9, 183],
+  [58, 12, 163]
+];
+
+let t = 0; // tempo para interpolar
+
+function lerpColor(a, b, f) {
+  return a.map((v, i) => Math.round(v + (b[i] - a[i]) * f));
+}
+
+/* FUNDO ULTRA ANIMADO SUAVE */
+function animateBackground() {
+  const idx1 = Math.floor(t) % colors.length;
+  const idx2 = (Math.floor(t) + 1) % colors.length;
+  const f = t - Math.floor(t);
+
+  const c = lerpColor(colors[idx1], colors[idx2], f);
+  document.body.style.background = `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
+
+  t += 0.01; // velocidade da transição
+  requestAnimationFrame(animateBackground);
+}
+
+/* RELÓGIO INFINITO */
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, "0");
+  const m = String(now.getMinutes()).padStart(2, "0");
+  const s = String(now.getSeconds()).padStart(2, "0");
+
+  clockEl.textContent = `${h}:${m}:${s}`;
+
+  dateEl.textContent = now.toLocaleDateString("pt-BR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+
+  requestAnimationFrame(updateClock);
+}
+
+animateBackground();
+updateClock();
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

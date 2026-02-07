@@ -1,0 +1,9 @@
+# Configurações de Ambiente (SEGURANÇA CRÍTICA)
+.env
+
+# Dependências (Não precisam de subir porque o 'npm install' resolve)
+node_modules/
+
+# Logs e ficheiros temporários
+npm-debug.log*
+.DS_Store

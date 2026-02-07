@@ -1,0 +1,13 @@
+{
+  "name": "ia-cyber",
+  "version": "1.0.0",
+  "description": "Núcleo de Inteligência Chappie",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}

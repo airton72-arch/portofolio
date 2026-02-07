@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Caneca Cyber Neon",
+    "category": "Canecas",
+    "price": 49.90,
+    "status": "sob demanda"
+  },
+  {
+    "id": 2,
+    "name": "Ecobag Hacker",
+    "category": "Ecobags",
+    "price": 39.90,
+    "status": "sob demanda"
+  },
+  {
+    "id": 3,
+    "name": "Botton Personalizado",
+    "category": "Bottons",
+    "price": 9.90,
+    "status": "sob demanda"
+  }
+]

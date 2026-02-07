@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cyber Monitor Dashboard | Airton</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --bg:#02080d;
+  --neon:#00eaff;
+  --neon-dark:#008cff;
+  --panel:#06151f;
+  --text:#dffcff;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Courier New", monospace}
+
+/* BODY + HALO CYBER */
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top, rgba(0,234,255,.25), transparent 45%),
+    linear-gradient(#02080d,#010507);
+  color:var(--neon);
+  transition:.5s;
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:20px;
+  border-bottom:1px solid var(--neon);
+  box-shadow:0 0 15px rgba(0,234,255,.6);
+  text-shadow:0 0 15px var(--neon);
+}
+
+.subtitle{
+  font-size:.85rem;
+  opacity:.8;
+}
+ .author{
+  font-size:.7rem;
+  opacity:.6;
+  margin-left:6px;
+}
+
+/* GRID */
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  padding:25px;
+}
+
+/* Responsivo */
+@media (max-width: 900px){
+  .dashboard{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media (max-width: 500px){
+  .dashboard{
+    grid-template-columns:1fr;
+  }
+}
+/* CARD */
+.card{
+  border:1px solid rgba(0,234,255,.5);
+  padding:15px;
+  background:rgba(2,12,18,.85);
+  box-shadow:0 0 15px rgba(0,234,255,.4);
+  transition:.3s;
+  text-align:center;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 30px rgba(0,234,255,.8);
+}
+
+.card h2{
+  font-size:1.1rem;
+  margin-bottom:10px;
+  text-shadow:0 0 10px var(--neon);
+}
+
+/* MÉTRICAS */
+.value{
+  font-size:1.9rem;
+  animation:glow 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 5px var(--neon); }
+  to{ text-shadow:0 0 25px var(--neon); }
+}
+
+/* LOGS */
+.logs{
+  grid-column:1/-1;
+  max-height:160px;
+  overflow-y:auto;
+  background:rgba(0,0,0,.4);
+  padding:10px;
+  border:1px solid var(--neon);
+  box-shadow:inset 0 0 15px rgba(0,234,255,.6);
+  font-size:.8rem;
+}
+
+/* STATUS */
+.ok{ color:var(--neon); }
+.alert{ color:#ff4444; }
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <h1>🖥️ CYBER MONITOR DASHBOARD</h1>
+  <div class="subtitle">
+  System Monitor — Real Time
+  <span class="author">• Airton Heinen</span>
+</div>
+</header>
+
+<main class="dashboard">
+
+  <section class="card">
+    <h2>🕒 Relógio</h2>
+    <div id="clock" class="value">00:00:00</div>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ CPU</h2>
+    <div id="cpu" class="value">0%</div>
+  </section>
+
+  <section class="card">
+    <h2>💾 Memória</h2>
+    <div id="ram" class="value">0%</div>
+  </section>
+
+  <section class="card">
+    <h2>🌐 Rede</h2>
+    <div id="net" class="value ok">OK</div>
+  </section>
+
+  <section class="card logs" id="logs">
+    <h2>📡 Logs do Sistema</h2>
+  </section>
+
+</main>
+
+<script>
+// RELÓGIO
+function atualizarRelogio(){
+  const d=new Date();
+  document.getElementById("clock").innerText=
+    d.toLocaleTimeString();
+}
+setInterval(atualizarRelogio,1000);
+atualizarRelogio();
+
+// SISTEMA SIMULADO
+const cpu=document.getElementById("cpu");
+const ram=document.getElementById("ram");
+const net=document.getElementById("net");
+const logs=document.getElementById("logs");
+
+function atualizarSistema(){
+  cpu.innerText=Math.floor(Math.random()*50+10)+"%";
+  ram.innerText=Math.floor(Math.random()*50+20)+"%";
+
+  const ok=Math.random()>0.1;
+  net.innerText=ok?"OK":"OFF";
+  net.className="value "+(ok?"ok":"alert");
+
+  const log=`${new Date().toLocaleTimeString()} — CPU:${cpu.innerText} RAM:${ram.innerText} NET:${net.innerText}`;
+  logs.innerHTML+=log+"<br>";
+  logs.scrollTop=logs.scrollHeight;
+}
+
+setInterval(atualizarSistema,5000);
+atualizarSistema();
+</script>
+
+</body>
+</html>

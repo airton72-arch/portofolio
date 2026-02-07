@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio Airton Heinen</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg">
+
+<style>
+:root{
+  --bg:#02080d;
+  --neon:#00eaff;
+  --neon-dark:#008cff;
+  --panel:#06151f;
+  --text:#dffcff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
+
+body{
+  background:radial-gradient(circle at top,#003b55 0%,transparent 45%),
+             linear-gradient(#02080d,#010507);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.scanline{
+  position:fixed;inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,234,255,.05),
+    rgba(0,234,255,.05) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  pointer-events:none;
+}
+
+.container{
+  width:90%;
+  max-width:1100px;
+  padding:35px;
+  border:1px solid var(--neon);
+  background:var(--panel);
+  box-shadow:0 0 30px rgba(0,234,255,.35),
+             inset 0 0 25px rgba(0,234,255,.15);
+}
+
+header{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+header h1{
+  color:var(--neon);
+  text-shadow:0 0 15px var(--neon), 0 0 30px var(--neon-dark);
+  letter-spacing:3px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.module{
+  border:1px solid rgba(0,234,255,.4);
+  padding:20px;
+  background:rgba(2,12,18,.9);
+  position:relative;
+  text-align:center;
+}
+
+.module h2{
+  color:var(--neon);
+  margin-bottom:10px;
+}
+
+.module p{
+  font-size:.85rem;
+  opacity:.85;
+}
+
+.cyber-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  color:var(--neon);
+  border:1px solid var(--neon);
+  text-decoration:none;
+  position:relative;
+  box-shadow:0 6px 0 var(--neon-dark),0 0 15px rgba(0,234,255,.6);
+  transition:.15s;
+  border-radius:5px;
+}
+.cyber-btn:hover{
+  transform: translateY(-2px);
+}
+.cyber-btn i{
+  margin-right:8px;
+  text-shadow:0 0 10px var(--neon);
+}
+.cyber-btn:active{
+  transform:translateY(4px);
+  box-shadow:0 2px 0 var(--neon-dark), inset 0 0 10px rgba(0,234,255,.8);
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.modal-content{
+  width:90%;
+  max-width:800px;
+  height:90%;
+  background:#000;
+  border:2px solid var(--neon);
+  box-shadow:0 0 30px var(--neon);
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+.modal-content iframe{
+  flex:1;
+  border:none;
+}
+.modal .close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  color:var(--neon);
+  font-size:1.5rem;
+  cursor:pointer;
+}
+
+footer{
+  margin-top:30px;
+  text-align:center;
+  font-size:.7rem;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+<div class="scanline"></div>
+<div class="container">
+
+<header>
+  <h1>PORTFÓLIO AIRTON HEINEN</h1>
+</header>
+
+<section class="grid">
+
+  <div class="module">
+    <h2>Dashboard Cyber</h2>
+    <p>Painel de monitoramento futurista em tempo real.</p>
+    <a href="cyber-monitor/dashboard/index.html" class="cyber-btn" target="_blank">ACESSAR</a>
+  </div>
+
+  <div class="module">
+    <h2>Frontend Hacker</h2>
+    <p>Mini página de projetos neon e animações CSS/JS.</p>
+    <a href="frontend/index.html" class="cyber-btn" target="_blank">ABRIR</a>
+  </div>
+
+<div class="module">
+  <h2>IA Cyber</h2>
+  <p>Automações e inteligência artificial.</p>
+  <a href="http://localhost:3000" class="cyber-btn" target="_blank">
+    <i class="fas fa-robot"></i> ENTRAR
+  </a>
+</div>
+
+<!-- " até o final do </script>) --> 
+
+  <div class="module">
+    <h2>Backend</h2>
+    <p>Node.js, APIs e lógica de sistema.</p>
+    <a href="#" class="cyber-btn">EM BREVE</a>
+  </div>
+
+  <div class="module">
+    <h2>Currículo Cyber</h2>
+    <p>Versão interativa e neon do meu CV.</p>
+    <a href="cv1.html" class="cyber-btn" target="_blank">
+      <i class="fas fa-file-code"></i> Abrir CV
+    </a>
+  </div>
+
+  <div class="module">
+    <h2>Conectar</h2>
+    <a href="https://github.com/airton72-arch/portofolio-frontend" target="_blank" class="cyber-btn">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/airton-heinen-9876a519a/" target="_blank" class="cyber-btn">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 • Airton • Cyber System Portfolio
+</footer>
+
+<!-- Modal IA Cyber -->
+<div id="iaModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <iframe src="ia-cyber/index.html"></iframe>
+  </div>
+</div>
+
+<script src="ia-cyber/app.js"></script>
+<script>
+// ABRIR MODAL IA
+const modal = document.getElementById("iaModal");
+const btn = document.getElementById("openIA");
+const span = document.querySelector(".modal .close");
+
+btn.onclick = () => modal.style.display = "flex";
+span.onclick = () => modal.style.display = "none";
+window.onclick = e => { if(e.target===modal) modal.style.display = "none"; }
+</script>
+
+</div>
+</body>
+</html>

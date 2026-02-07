@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Cyber - Airton Heinen</title>
+
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00f2ff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 520px;
+            padding: 30px;
+            border-radius: 16px;
+            border: 2px solid #00f2ff;
+            box-shadow: 0 0 25px #00f2ff;
+            background: rgba(0,0,0,0.9);
+            text-align: center;
+        }
+
+        .bot-img {
+            width: 200px;
+            border-radius: 12px;
+            border: 2px solid #00f2ff;
+            box-shadow: 0 0 20px #00f2ff;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00f2ff;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #00f2ff;
+            color: #ffffff;
+            border-radius: 6px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background: #00f2ff;
+            color: #000;
+            border: none;
+            padding: 12px 26px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            box-shadow: 0 0 25px #00f2ff;
+            transform: scale(1.05);
+        }
+
+        #resposta {
+            margin-top: 25px;
+            padding: 18px;
+            min-height: 100px;
+
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1.8;
+
+            background: rgba(255,255,255,0.04);
+            border-left: 4px solid #00f2ff;
+            border-radius: 10px;
+
+            white-space: pre-wrap;
+            word-break: break-word;
+            text-align: left;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <img src="chappie.jpg" alt="IA Chappie" class="bot-img">
+
+    <h2>NÚCLEO DE INTELIGÊNCIA</h2>
+    <h1>IA CYBER</h1>
+
+    <input
+        type="text"
+        id="campoPergunta"
+        placeholder="Digite sua pergunta aqui..."
+    >
+
+    <br>
+
+    <button onclick="enviar()">ENVIAR AO NÚCLEO</button>
+
+    <div id="resposta">Aguardando comando do sistema...</div>
+
+    <footer>Desenvolvido por: Airton Heinen</footer>
+</div>
+
+<script>
+    function digitarResposta(texto) {
+        const resp = document.getElementById("resposta");
+        resp.innerText = "\nCHAPPIE > \n\n";
+
+        let i = 0;
+        function escrever() {
+            if (i < texto.length) {
+                resp.innerText += texto.charAt(i);
+                i++;
+                setTimeout(escrever, 28);
+            }
+        }
+        escrever();
+    }
+
+    async function enviar() {
+        const input = document.getElementById("campoPergunta");
+        const resp = document.getElementById("resposta");
+
+        if (!input.value.trim()) {
+            resp.innerText = "⚠️ Insira uma pergunta válida.";
+            return;
+        }
+
+        resp.innerText = "📡 Conectando ao Núcleo de Inteligência...";
+
+        try {
+            const response = await fetch("/perguntar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mensagem: input.value })
+            });
+
+            const data = await response.json();
+
+            if (data.resposta) {
+                digitarResposta(data.resposta);
+                input.value = "";
+            } else {
+                resp.innerText = "❌ Erro ao receber resposta.";
+            }
+        } catch (e) {
+            resp.innerText = "❌ Falha de comunicação com o servidor.";
+            console.error(e);
+        }
+    }
+
+    document
+        .getElementById("campoPergunta")
+        .addEventListener("keypress", function (e) {
+            if (e.key === "Enter") enviar();
+        });
+</script>
+
+</body>
+</html>
